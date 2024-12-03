@@ -1,0 +1,176 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    box-sizing: border-box;
+}
+
+/* Headings */
+h2 {
+    text-align: center;
+    color: #2a68a2;
+    font-size: 12px; /* Reduced font size */
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+p{
+    font-size: 14px;
+}
+p strong{
+    font-size: 14px;
+
+}
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 5px 0;
+    background-color: #fff;
+}
+
+th, td {
+    padding: 4px; /* Reduced padding */
+    text-align: center;
+    border: 1px solid #ddd;
+    font-size: 9px; /* Reduced font size */
+}
+
+th {
+    background-color: #2a68a2;
+    color: white;
+    font-weight: bold;
+}
+
+/* Input Fields */
+input, textarea {
+    width: 88%; /* Reduced width for better fit */
+    padding: 4px; /* Reduced padding */
+    margin: 3px 0;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 9px; /* Reduced font size */
+}
+
+/* Buttons */
+button {
+    display: block;
+    width: 120px; /* Reduced button width */
+    margin: 10px auto;
+    padding: 5px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 10px; /* Reduced font size */
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Footer */
+footer table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+footer td {
+    padding: 0px; /* Reduced padding */
+    text-align: center;
+    font-size: 9px; /* Reduced font size */
+    border: 1px solid #ddd;
+}
+
+/* Signature Fields */
+#checkedByTechnicianSignature, #calibrationTechnicianSignature {
+    width: 83%; /* Extend the signature input field to fill the space */
+    padding: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Copyright */
+#copyright {
+    text-align: center; /* Centers the text */
+    margin-top: 0px; /* Adds space above the copyright */
+    font-size: 7px; /* Font size */
+    color: #000000; /* Font color */
+    background-color: #f1f1f1; /* Background color */
+    padding: 2px; /* Padding inside the copyright */
+    border-top: 1px solid #ccc; /* Border above the copyright */
+}
+
+#copyright p {
+    margin: 0; /* Removes default margin */
+    font-family: Arial, sans-serif; /* Font family */
+}
+
+/* Printing Styles */
+@page {
+    size: A4;
+    margin: 10mm; /* Adjusted margins for A4 */
+}
+
+@media print {
+    body {
+        background-color: white;
+    }
+.container {
+        border: none;
+        max-width: 100%; /* Ensure full-width container for printing */
+    }
+
+    button {
+        display: none; /* Hide buttons during printing */
+    }
+
+    input, textarea {
+        border: none; /* Hide borders during printing */
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 5px;
+    }
+
+    header table, footer table {
+        font-size: 8px;
+    }
+
+    th, td {
+        font-size: 8px;
+        padding: 3px;
+    }
+
+    input, textarea {
+        font-size: 8px;
+    }
+
+    button {
+        width: 100px;
+        font-size: 10px;
+    }
+}
+
+/* Utility Class */
+.hide-in-pdf {
+    display: none !important;
+}

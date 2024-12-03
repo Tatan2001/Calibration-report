@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calibration Report for Gauge</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+    <script src="script.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <table border="1" style="width:100%; margin-bottom: 20px;">
+                <tr>
+                    <!-- First Column (Logo Section) -->
+                    <td style="width: 20%; text-align: center;">
+                        <img src="img/logo1.png" alt="Logo" style="max-width: 154px;">
+                    </td>
+    
+                    <!-- Middle Column (3 Rows of Text) -->
+                    <td style="width: 40%; text-align: center;">
+                        <p><strong>Haldia Division - IMD</strong></p>
+                        <p>Instrumentation Maintenance Department</p>
+                        <p>Work Instruction for Gauge Calibration</p>
+                    </td>
+    
+                    <!-- Last Column (3 Rows of Document Info) -->
+                    <td style="width: 40%; text-align: center;">
+                        <p><strong>Doc No:</strong> TPCL/IMS/IMD/WIP/D00</p>
+                        <p><strong>Rev No:</strong> 02</p>
+                        <p><strong>Rev Date:</strong> 01.09.2024</p>
+                    </td>
+                </tr>
+            </table>
+        </header>
+        
+    
+        <h2>Calibration Report for Gauge</h2>
+
+        <!-- Calibration Details -->
+        <table>
+            <tr>
+                <th>Tag No:</th>
+                <td><input type="text" name="tag_no"></td>
+                <th>Date:</th>
+                <td><input type="date" name="date"></td>
+            </tr>
+            <tr>
+                <th>Location:</th>
+                <td><input type="text" name="location"></td>
+                <th>Range:</th>
+                <td><input type="text" name="range"></td>
+            </tr>
+            <tr>
+                <th>Make:</th>
+                <td><input type="text" name="make"></td>
+                <th>Service:</th>
+                <td><input type="text" name="service"></td>
+            </tr>
+        </table>
+
+        <!-- Types of Gauge -->
+        <h2>Types of Gauge</h2>
+        <table>
+            <tr>
+                <td><input type="checkbox" name="gauge_type" value="Pressure"> Pressure</td>
+                <td><input type="checkbox" name="DP" value="DP"> DP</td>
+                <td><input type="checkbox" name="vacaum" value="Vacuum"> Vacuum</td>
+                <td><input type="checkbox" name="Temperature" value="Temperature"> Temperature</td>
+                <td><input type="checkbox" name="Level" value="Level"> Level</td>
+            </tr>
+        </table>
+
+        <!-- Test Equipment Details -->
+        <h2>Test Equipment Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Test Equipment</th>
+                    <th>Model No</th>
+                    <th>Tag No</th>
+                    <th>Calibrated Date</th>
+                    <th>Next Calibration Due On</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="test_equipment"></td>
+                    <td><input type="text" name="model_no"></td>
+                    <td><input type="text" name="tag_no"></td>
+                    <td><input type="date" name="calibrated_date"></td>
+                    <td><input type="date" name="next_calibration_date"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="test_equipment"></td>
+                    <td><input type="text" name="model_no"></td>
+                    <td><input type="text" name="tag_no"></td>
+                    <td><input type="date" name="calibrated_date"></td>
+                    <td><input type="date" name="next_calibration_date"></td>
+                </tr>
+            </tbody>
+        </table>
+ 
+        <h2>Calibration Report for Gauge <span style="font-size: 14px; margin-left: 10px; color: #555;">Accuracy: +/-0.05%</span></h2>
+        <table>
+            <thead>
+                <tr>
+                    <th rowspan="3">Sr No</th>
+                    <th colspan="1">Input</th>
+                    <th colspan="1">Expected O/P</th>
+                    <th colspan="4">Output</th>
+                    <th colspan="2">Status</th>
+                    <th rowspan="3">Remarks</th>
+                </tr>
+                <tr>
+                    <th colspan="1">UoM</th>
+                    <th colspan="1">UoM</th>
+                    <th colspan="2">Before Calibration</th>
+                    <th colspan="2">After Calibration</th>
+                    <th rowspan="2">% Error Before Cal.</th>
+                    <th rowspan="2">% Error After Cal.</th>
+                </tr>
+                <tr>
+                    <th> <select id="dropdown1" onchange="syncDropdown('dropdown2', this.value)">
+                        <option value="%">%</option>
+                        <option value="KG/Cm">KG/Cm</option>
+                        <option value="Deg C">Deg C</option>
+                        <option value="mA">mA</option>
+                    </select></th>
+                    <th><select id="dropdown2" onchange="syncDropdown('dropdown1', this.value)">
+                        <option value="%">%</option>
+                        <option value="KG/Cm">KG/Cm</option>
+                        <option value="Deg C">Deg C</option>
+                        <option value="mA">mA</option>
+                    </select></th>
+                    <th>Incr</th>
+                    <th>Decr</th>
+                    <th>Incr</th>
+                    <th>Decr</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td><input type="number" name="input_uom_1"></td>
+                    <td><input type="number" name="expected_output_1"></td>
+                    <td><input type="number" name="before_incr_1"></td>
+                    <td><input type="number" name="before_decr_1"></td>
+                    <td><input type="number" name="after_incr_1"></td>
+                    <td><input type="number" name="after_decr_1"></td>
+                    <td><span id="error_before_cal_1">0</span></td>
+                    <td><span id="error_after_cal_1">0</span></td>
+                    <td><input type="text" name="remarks_1"></td>    
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="number" name="input_uom_2"></td>
+                    <td><input type="number" name="expected_output_2"></td>
+                    <td><input type="number" name="before_incr_2"></td>
+                    <td><input type="number" name="before_decr_2"></td>
+                    <td><input type="number" name="after_incr_2"></td>
+                    <td><input type="number" name="after_decr_2"></td>
+                    <td><span id="error_before_cal_2">0</span></td>
+                    <td><span id="error_after_cal_2">0</span></td>
+                    <td><input type="text" name="remarks_2"></td>    
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="number" name="input_uom_3"></td>
+                    <td><input type="number" name="expected_output_3"></td>
+                    <td><input type="number" name="before_incr_3"></td>
+                    <td><input type="number" name="before_decr_3"></td>
+                    <td><input type="number" name="after_incr_3"></td>
+                    <td><input type="number" name="after_decr_3"></td>
+                    <td><span id="error_before_cal_3">0</span></td>
+                    <td><span id="error_after_cal_3">0</span></td>
+                    <td><input type="text" name="remarks_3"></td>    
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="number" name="input_uom_4"></td>
+                    <td><input type="number" name="expected_output_4"></td>
+                    <td><input type="number" name="before_incr_4"></td>
+                    <td><input type="number" name="before_decr_4"></td>
+                    <td><input type="number" name="after_incr_4"></td>
+                    <td><input type="number" name="after_decr_4"></td>
+                    <td><span id="error_before_cal_4">0</span></td>
+                    <td><span id="error_after_cal_4">0</span></td>
+                    <td><input type="text" name="remarks_4"></td>    
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="number" name="input_uom_5"></td>
+                    <td><input type="number" name="expected_output_5"></td>
+                    <td><input type="number" name="before_incr_5"></td>
+                    <td><input type="number" name="before_decr_1"></td>
+                    <td><input type="number" name="after_incr_5"></td>
+                    <td><input type="number" name="after_decr_5"></td>
+                    <td><span id="error_before_cal_5">0</span></td>
+                    <td><span id="error_after_cal_5">0</span></td>
+                    <td><input type="text" name="remarks_5"></td>    
+                </tr>
+        </table>
+        <table id="calibrationTable">
+            <tr>
+                <th colspan="2">Calibrated By</th>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Name:</strong><br>
+                    <input type="text" id="calibrationTechnicianName" name="technician_name" placeholder=""><br><br>
+                    <strong>Signature:</strong><br>
+                    <input type="text" id="calibrationTechnicianSignature" name="technician_signature" placeholder="">
+                </td>
+                <td id="calibrationRemarks">
+                    <strong>Remarks:</strong><br>
+                    <textarea id="calibrationRemarksInput" name="remarks" placeholder="" rows="4" cols="30"></textarea>
+                </td>
+            </tr>
+        </table>
+        
+        <table id="checkedByTable">
+            <tr>
+                <th colspan="2">Checked By (Officer)</th>
+            </tr>
+            <tr>
+                <td id="checkedByName">
+                    <strong>Name:</strong><br>
+                    <input type="text" id="checkedByTechnicianName" name="technician_name" placeholder=""><br><br>
+                    <strong>Signature:</strong><br>
+                    <input type="text" id="checkedByTechnicianSignature" name="technician_signature" placeholder="">
+                </td>
+                <td id="checkedByRemarks">
+                    <strong>Remarks:</strong><br>
+                    <textarea id="checkedByRemarksInput" name="remarks" placeholder="" rows="4" cols="30"></textarea>
+                </td>
+            </tr>
+        </table>
+        
+        <button type="button" id="submitBtn">Generate PDF</button>
+        <script src="script.js"></script>
+        <footer>
+            <table>
+                <tr>
+                    <!-- Left Column (Prepared by IMD Engineer) -->
+                    <td style="width: 50%; text-align: center;">
+                        <strong>Prepared by</strong><br>
+                        IMD Engineer
+                    </td>
+
+                    <!-- Right Column (Approved by HOD - IMD with Seal) -->
+                    <td style="width: 50%; text-align: center;">
+                        <strong>Approved by</strong><br>
+                        HOD - IMD<br><br>
+                    </td>
+                </tr>
+            </table>
+            <div id="copyright">
+                <p>&copy; 2024 Tata Power Haldia Division. All rights reserved @Tatan paul.</p>
+        </footer>
+        
+    </div>
+    
+</body>
+
+</html>
